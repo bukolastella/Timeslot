@@ -1,5 +1,11 @@
+import Logo from "./Logo";
+
 const Hero = () => {
-  return <div>Hero</div>;
+  return (
+    <div className="h-screen bg-black opacity-50 ">
+      <Logo />
+    </div>
+  );
 };
 
 export default Hero;
