@@ -1,11 +1,13 @@
 import Logo from "./Logo";
 import { HeroImagesData } from "./data";
 import HeroImages from "./HeroImages";
+import BaseLine from "./BaseLine";
 
 const Hero = () => {
   return (
     <div className="relative h-screen bg-slate-700">
       <Logo />
+      <BaseLine />
       {HeroImagesData.map((image, index) => (
         <HeroImages
           key={index}
