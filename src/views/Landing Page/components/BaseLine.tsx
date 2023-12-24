@@ -1,14 +1,18 @@
-import { useLayoutEffect, useRef } from "react";
+import { FC, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 
-const BaseLine = () => {
+interface Props {
+  addAnimation: (animation: GSAPTimeline) => void;
+}
+
+const BaseLine: FC<Props> = ({ addAnimation }) => {
   const app = useRef<HTMLDivElement>(null);
   const ctx = useRef<gsap.Context>();
 
   useLayoutEffect(() => {
     ctx.current = gsap.context(() => {
       const tl = gsap.timeline({
-        paused: true,
+        // paused: true,
         defaults: {
           duration: 5,
         },
@@ -24,10 +28,12 @@ const BaseLine = () => {
         },
         "<30%"
       );
+
+      addAnimation(tl);
     }, app);
 
     return () => ctx.current?.revert();
-  }, []);
+  }, [addAnimation]);
 
   return (
     <div

@@ -53,7 +53,7 @@ const Logo = () => {
   return (
     <div ref={app}>
       <div
-        className={`mt-[${MLY}px] ml-[${MLX}px] w-[${W}px] h-[500px] inline-block bg-red-700  items-center justify-center cursor-pointer`}
+        className={`left-[${MLY}px] top-[${MLX}px] w-[${W}px] h-[500px] inline-block bg-red-700  items-center justify-center cursor-pointer absolute`}
         style={{
           width: `${W}px`,
           height: `${H}px`,

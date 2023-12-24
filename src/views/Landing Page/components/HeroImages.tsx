@@ -1,6 +1,8 @@
 import { FC, useLayoutEffect, useRef } from "react";
-import gsap from "gsap";
 import { HeroImagesData } from "./data";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   img: string;
@@ -10,6 +12,7 @@ interface Props {
   width: number;
   height: number;
   index: number;
+  addAnimation: (animation: GSAPTimeline) => void;
 }
 
 const HeroImages: FC<Props> = ({
@@ -20,6 +23,7 @@ const HeroImages: FC<Props> = ({
   index,
   width,
   height,
+  addAnimation,
 }) => {
   const app = useRef<HTMLDivElement>(null);
   const ctx = useRef<gsap.Context>();
@@ -32,10 +36,9 @@ const HeroImages: FC<Props> = ({
       const secondR = duration - firstR;
 
       const tl = gsap.timeline({
-        paused: true,
+        // paused: true,
         defaults: {
           duration: duration,
-          //   delay: 5, //
         },
       });
 
@@ -63,10 +66,12 @@ const HeroImages: FC<Props> = ({
           },
           `<${midPoint}%`
         );
+
+      addAnimation(tl);
     }, app);
 
     return () => ctx.current?.revert();
-  }, [right, top, rotate, width, height]);
+  }, [right, top, rotate, width, height, addAnimation]);
 
   return (
     <div ref={app}>
